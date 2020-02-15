@@ -1,18 +1,19 @@
 <?php
-session_start();
-$username1 = $_SESSION["username"];
+/*session_start();
+$username1 = $_SESSION["username"];*/
 /*$id = $_SESSION["id"]*/;
 require ("../database.php");
-$con = mysqli_connect($servername, $username, $password, $database);
-?>
+  $con = mysqli_connect($servername, $username, $password, $database);
+  $result = 'SELECT COUNT(id_no) AS count FROM tricycle_operator';
+    $statement = $connection->prepare($result);
+        $statement->execute();
+        $count = $statement->fetchAll(PDO::FETCH_OBJ);
 
-<?php
+     foreach($count as $package):
 
-require ("../database.php");
-// $sql = 'select * from user_account where (Active IS NOT NULL or Active = 1) AND
-      // (Deleted IS NULL OR Deleted != 1) AND (IsBlocked IS NULL OR IsBlocked !=1)';
-
-$con = mysqli_connect($servername, $username, $password, $database);
+      $num_padded = sprintf("%04d", $package->count+1);
+      $AI = "" . date("Y-md") . "-".$num_padded."";
+      endforeach;
 if(isset($_POST['btn_submit_sum']))
 {
           $first_name = $_POST['first_name'];
@@ -276,7 +277,7 @@ if(isset($_POST['btn_submit_sum']))
                   <a href="application_form.php">Fetch Data</a>    -->
                 </div>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" name="case_no" placeholder="Case No" required>
+                  <input type="text" class="form-control" name="case_no" placeholder="Case No" required readonly value=<?php echo $AI ?> >
                 </div>
 
               </div>
@@ -368,9 +369,14 @@ if(isset($_POST['btn_submit_sum']))
               </div>
 
 
-              <div class="col-sm-4">
-                <input type="text" class="form-control" name="unit" placeholder="unit" required>
+               <div class="col-sm-4">
+                <select class="form-control" name="unit" >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
               </div>
+
 
             </div>
 

@@ -149,61 +149,15 @@
           });
           });
         </script>
-          <input id="myInput" type="text" placeholder=" Search.." style="display: block; margin-bottom: 1%;">
+ 
+ <iframe src="t_operator.php" width="100%" height="1000px" frameborder="0"></iframe>
 
-       <?php
-require ("../database.php");
-$con = mysqli_connect($servername, $username, $password, $database);
+ <script>
+ $(document).ready(function(){
+      $('#operator_data').DataTable();
+ });
+ </script>
 
-$result = ' SELECT *
-            FROM tricycle_operator
-            WHERE status = 5;';
-  $statement = $connection->prepare($result);
-      $statement->execute();
-      $payments = $statement->fetchAll(PDO::FETCH_OBJ);
-
-
-
-echo "<table border='1'  class='table table-striped table-bordered table-hover' id='dataTables-example' >
-<tr>
-
-<th><b>Toda No.</b></td></th>
-<th><b>Name</b></td></th>
-<th><b>Address</b></td></th>
-<th><b>Motor No.</b></td></th>
-<th><b>Chasis No.</b></td></th>
-<th><b>Plate No.</b></td></th>
-<th><b>Date</b></td></th>
-<tbody id='myTable'>";
-   foreach($payments as $package):
-      $fname= $package->first_name;
-      $lname= $package->last_name;
-      $mname= $package->middle_name;
-      $toda = $package->toda;
-      $toda_no = $package->toda_no;
-      $fullname= $lname .', '. $fname .' '.$mname;
-      $tric_no= $toda .' '.$toda_no;
-      $house_no = $package->house_no;
-      $street = $package->street;
-      $barangay = $package->barangay;
-      $city= $package->city;
-      $full_add =  $house_no .' '. $street .' '.$barangay.' '.$city;
-
-    echo "<tr id=".$package->id_no.">";
-    echo "<td >".$tric_no."</td>";
-    echo "<td >".$fullname."</td>";
-    echo "<td >".$full_add."</td>";
-    echo "<td >".$package->motor_no."</td>";
-    echo "<td >".$package->chasis_no."</td>";
-    echo "<td >".$package->plate_no."</td>";
-    echo "<td >".$package->date."</td>";
-
-
- endforeach;
- echo "
- </tbody>
- </table>";
-?>
 <script type="text/javascript">
 
   function myFunction() {

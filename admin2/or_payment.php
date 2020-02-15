@@ -6,6 +6,18 @@ require ("../database.php");
 $con = mysqli_connect($servername, $username, $password, $database);
 $userid = $_GET['userid'];
 /* echo $userid;*/
+$result = 'SELECT COUNT(id_no) AS count FROM tricycle_operator';
+  $statement = $connection->prepare($result);
+      $statement->execute();
+      $count = $statement->fetchAll(PDO::FETCH_OBJ);
+
+   foreach($count as $package):
+
+    $num_padded = sprintf("%04d", $package->count+1);
+    $AI = $num_padded;
+    endforeach;
+
+
 $sql_insp = 'select * from tricycle_operator where status = 1 and id_no = "'.$userid.'" ';
 
       $statement = $connection->prepare($sql_insp);
@@ -242,7 +254,7 @@ if(isset($_POST['btn_submit_sum']))
                <label style="margin-left:30%;">Sticker Number:</label>
              </div>
              <div class="col-sm-4">
-               <input type="text" class="form-control" name="sticker_no" placeholder="Sticker Number">
+               <input type="text" class="form-control" name="sticker_no" placeholder="Sticker Number" readonly value=<?php echo $AI; ?> >
              </div>
            </div>
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
