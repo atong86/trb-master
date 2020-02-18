@@ -82,6 +82,7 @@ $con = mysqli_connect($servername, $username, $password, $database);
             <h6 class="collapse-header">Other Pages:</h6>
             <a class="collapse-item" href="404.html">Dropped</a>
             <a class="collapse-item" href="blank.html">Unregistered</a>
+            <a class="collapse-item" href="new_logs.php">New Logs</a>
           </div>
         </div>
       </li>
