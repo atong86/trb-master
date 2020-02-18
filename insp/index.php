@@ -9,6 +9,9 @@ if(isset($_POST['btn_submit_sum']))
   $toda_no = $_POST['toda_no'];
   $toda = $_POST['toda'];
   $insert = mysqli_query($con,"INSERT INTO inspected VALUES  (NULL, '".$toda_no."','".$toda."', '".$username1 ."', NOW() , 1, 1) ;") or die(mysqli_error($con));
+
+  //For logs
+  $insert2 = mysqli_query($con,"INSERT INTO new_logs VALUES  (NULL, '".$toda."','".$toda_no."','inspected', '".$username1 ."', NOW() , 1, 1,1, 1, 1,1, 1, 1,1) ;") or die(mysqli_error($con));
   echo "<script type='text/javascript'>window.location.href = 'index.php';</script>";
 }
 ?>

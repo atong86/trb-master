@@ -31,41 +31,48 @@ $sql_insp = '';
     $street = $package->street;
     $barangay = $package->barangay;
     $city= $package->city;
-    $full_add =  $house_no .' '. $street .' '.$barangay.' '.$city;
+    $full_add =  $house_no .' '. $street .' '.$barangay.', '.$city;
     $or_date= date_create($package->or_date);
     $or_new_date = date_format($or_date,"yy-m-d");
 
 $pdf->AddPage();
-$pdf->SetFont('Arial','',12);
+$pdf->SetFont('Times','',11);
 /*$pdf->Cell(40,10,'Hello World!');*/
 
 // Insert a logo in the top-left corner at 300 dpi
-$pdf->Image('../img/sj_logo.png',85,10,-800);
+$pdf->Image('../img/sj_logo.png',91,10,-700);
 $pdf->ln(30);
 
 $pdf->Cell(0,10,'REPUBLIC OF THE PHILIPPINES',0,0,'C');
-$pdf->ln(6);
+$pdf->ln(5);
 $pdf->Cell(0,10,'CITY OF SAN JUAN, METRO MANILA',0,0,'C');
-$pdf->ln(6);
+$pdf->ln(5);
 $pdf->Cell(0,10,'OFFICE OF THE CITY MAYOR',0,0,'C');
-$pdf->ln(15);
-$pdf->SetFont('Arial','',16);
+$pdf->ln(5);
+$pdf->Cell(0,10,'-oOo-',0,0,'C');
+$pdf->ln(5);
+$pdf->SetFont('Times','B',12);
 $pdf->Cell(0,10,'TRICYCLE REGULATORY BOARD',0,0,'C');
-$pdf->ln(15);
-$pdf->SetFont('Arial','B',11);
-$pdf->Cell(50,7,'NAME OF APPLICANT:',0,0,'L');
-$pdf->SetFont('Arial','',11);
-$pdf->Cell(100,7,' '.$fullname,'B',0,'L');
-
+$pdf->ln(5);
+$pdf->Cell(0,10,'____________________________________________________________________________________________',0,0,'C');
 $pdf->ln(10);
-$pdf->SetFont('Arial','B',11);
-$pdf->Cell(50,10,'ADDRESS:',0,0,'L');
+$pdf->SetFont('Times','',11);
+$pdf->Cell(25,7,'APPLICANT:',0,0,'L');
 $pdf->SetFont('Arial','',11);
-$pdf->Cell(100,7,' '.$full_add,'B',0,'L');
-$pdf->ln(15);
+$pdf->Cell(0,7,' '.$fullname,0,0,'L');
+
+$pdf->ln(8);
+$pdf->SetFont('Times','',11);
+$pdf->Cell(25,7,'ADDRESS:',0,0,'L');
+$pdf->SetFont('Arial','',11);
+$pdf->Cell(0,7,' '.$full_add,0,0,'L');
+$pdf->ln(3);
+$pdf->Cell(0,10,'__________________________________________________________________________________________',0,0,'C');
+$pdf->ln(10);
+$pdf->SetFont('Times','B',12);
 $pdf->Cell(0,10,'ORDER OF PAYMENT',0,0,'C');
 $pdf->ln(10);
-
+$pdf->SetFont('Times','',11);
 $pdf->Cell(170,10,' '.$or_new_date,0,0,'R');
 $pdf->ln(5);
 $pdf->Cell(320,10,'DATE',0,0,'C');
@@ -75,7 +82,7 @@ $pdf->ln(5);
 $pdf->Cell(320,10,'SAN JUAN CITY, METRO MANILA',0,0,'L');
 $pdf->ln(10);
 $pdf->Cell(100,10,'Please collect the amount Specified Below:',0,0,'C');
-$pdf->ln(15);
+$pdf->ln(12);
 $pdf->Cell(100,10,'           Registration Fee',0,0,'L');
 $pdf->Cell(80,10,'            '.$num= number_format($package->reg_fee,2),0,0,'R');
 $pdf->ln(5);
@@ -106,22 +113,24 @@ $pdf->ln(5);
 $pdf->Cell(100,10,'           Others',0,0,'L');
 $pdf->Cell(80,10,'            '.$package->others,0,0,'R');
 $pdf->ln(10);
-$pdf->Cell(100,10,'                        Total Amount----',0,0,'L');
+$pdf->Cell(100,10,'                        Total Amount ---',0,0,'L');
 $pdf->Cell(80,10,'            '.$package->total_amount,0,0,'R');
 
 $pdf->ln(15);
-$pdf->Cell(15,10,'TODA:',0,0,'L');
-$pdf->Cell(10,10,' '.$package->toda.' #'.$package->toda_no,0,0,'L');
+$pdf->Cell(12,10,'TODA:',0,0,'L');
+$pdf->Cell(10,10,' '.$package->toda.' No. '.$package->toda_no,0,0,'L');
 $pdf->ln(5);
-$pdf->Cell(15,10,'PLATE #:',0,0,'L');
+$pdf->Cell(15,10,'PLATE No: ',0,0,'L');
 $pdf->Cell(10,10,'     '.$package->plate_no,0,0,'L');
 $pdf->ln(5);
-$pdf->Cell(15,10,'STICKER #:',0,0,'L');
+$pdf->Cell(16,10,'STICKER No: ',0,0,'L');
 $pdf->Cell(10,10,'        '.$package->sticker_no,0,0,'L');
-$pdf->ln(15);
+$pdf->ln(20);
+$pdf->SetFont('Arial','B',11);
 $pdf->Cell(0,10,'MARK LESTER E. DELGADO',0,0,'C');
 $pdf->ln(5);
-$pdf->Cell(0,10,'OIC, Transport Regulatory Board',0,0,'C');
+$pdf->SetFont('Times','I',11);
+$pdf->Cell(0,10,'Member, TRB',0,0,'C');
 }
 $pdf->Output();
 

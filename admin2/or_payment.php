@@ -33,42 +33,102 @@ foreach($or_payments as $package):
     $barangay = $package->barangay;
     $city= $package->city;
     $full_add =  $house_no .' '. $street .' '.$barangay.' '.$city;
+
 endforeach;
 
 if(isset($_POST['btn_submit_sum']))
 {
 
+    if (!isset($_POST['reg_fee'])) {
+         $reg_fee = '0';
+    } else {
+         $reg_fee = $_POST['reg_fee'];
+    }
 
 
- $reg_fee = ' ';
-  $mch = ' ';
-  $reg_sticker = ' ';
-  $petition = ' ';
-  $confirmation = ' ';
-  $inspection = ' ';
-  $supervision = ' ';
-  $fare_sticker = ' ';
-  $plate_sticker = ' ';
-  $total_amount = ' ';
-    $others =' ';
-  $sticker_no = ' ';
+    if (!isset($_POST['reg_fee'])) {
+        $mch = '0';;
+    } else {
+          $mch = $_POST['mch'];
+    }
 
-  $reg_fee = $_POST['reg_fee'];
-  $mch = $_POST['mch'];
-  $reg_sticker = $_POST['reg_sticker'];
-  $petition = $_POST['petition'];
-  $confirmation = $_POST['confirmation'];
-  $inspection = $_POST['inspection'];
-  $supervision = $_POST['supervision'];
-  $fare_sticker = $_POST['fare_sticker'];
-  $plate_sticker = $_POST['plate_sticker'];
-  $total_amount = $_POST['total_amount'];
-    $others = $_POST['others'];
-  $sticker_no = $_POST['sticker_no'];
+    if (!isset($_POST['reg_fee'])) {
+        $reg_sticker = '0';
+    } else {
+       $reg_sticker = $_POST['reg_sticker'];
+    }
+  
+
+
+    if (!isset($_POST['petition'])) {
+        $petition = '0';
+    } else {
+       $petition = $_POST['petition'];
+    }
+
+
+    if (!isset($_POST['confirmation'])) {
+        $confirmation = '0';
+    } else {
+       $confirmation = $_POST['confirmation'];
+    }
+  
+    if (!isset($_POST['inspection'])) {
+        $inspection = '0';
+    } else {
+       $inspection = $_POST['inspection'];
+    }
+  
+    if (!isset($_POST['supervision'])) {
+        $supervision = '0';
+    } else {
+       $supervision = $_POST['supervision'];
+    }
+
+    if (!isset($_POST['fare_sticker'])) {
+        $fare_sticker = '0';
+    } else {
+       $fare_sticker = $_POST['fare_sticker'];
+    }
+
+    if (!isset($_POST['plate_sticker'])) {
+        $plate_sticker = '0';
+    } else {
+       $plate_sticker = $_POST['plate_sticker'];
+    }
+
+    if (!isset($_POST['total_amount'])) {
+        $total_amount = '0';
+    } else {
+       $total_amount = $_POST['total_amount'];
+    }
+
+  
+    if (!isset($_POST['others'])) {
+        $others = '0';
+    } else {
+       $others = $_POST['others'];
+    }
+
+     if (!isset($_POST['sticker_no'])) {
+        $sticker_no = '0';
+    } else {
+       $sticker_no = $_POST['sticker_no'];
+    }
+
+
+ 
+ 
+
+
+
 
 
   $insert = mysqli_query($con,"INSERT INTO or_payments VALUES  (NULL, '".$userid."', '".$reg_fee."', '".$mch."', '".$reg_sticker."', '".$petition."', '".$confirmation."' , '".$inspection."', '".$supervision."', '".$fare_sticker."', '".$plate_sticker."', '".$others."', '".$total_amount."', '".$sticker_no."', NOW(), 1 );") or die(mysqli_error($con));
   $update = mysqli_query($con,"UPDATE tricycle_operator SET status = 2 WHERE id_no = '".$userid."';") or die(mysqli_error($con));
+
+   $update2 = mysqli_query($con,"UPDATE new_logs SET created_oop_by = '".$username1."', created_oop = 'Created OOP', created_oop_date = NOW() 
+      WHERE toda = '".$package->toda."' AND toda_no = '".$package->toda_no."'  ;") or die(mysqli_error($con));
 /*
   echo "INSERT INTO or_payments VALUES (NULL, '".$userid."', '".$reg_fee."', '".$mch."', '".$reg_sticker."', '".$petition."', '".$confirmation."' ,'".$inspection."', '".$supervision."', '".$fare_sticker."', '".$plate_sticker."', '".$others."', '".$total_amount."', '".$sticker_no."', NOW() );";*/
    echo "<script type='text/javascript'>window.location.href = 'index.php';</script>";
@@ -112,7 +172,7 @@ if(isset($_POST['btn_submit_sum']))
                   <label style="margin-left:30%;">Name of Applicant:</label>
                 </div>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="toda" placeholder="Toda" value="<?php echo $fullname?>"  style="margin-left:0%;"disabled>
+                  <input type="text" class="form-control" name="toda" placeholder="Toda" value="<?php echo $fullname?>"  style="margin-left:0%;" readonly >
                 </div>
                 <br>
               </div>
@@ -121,7 +181,7 @@ if(isset($_POST['btn_submit_sum']))
                   <label style="margin-left:30%;">Address:</label>
                 </div>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="toda" placeholder="Toda" value="<?php echo $full_add?>" disabled>
+                  <input type="text" class="form-control" name="toda" placeholder="Toda" value="<?php echo $full_add?>" readonly >
                 </div>
                 <br>
               </div>

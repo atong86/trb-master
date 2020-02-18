@@ -1,6 +1,6 @@
 <?php
-/*session_start();
-$username1 = $_SESSION["username"];*/
+session_start();
+$username1 = $_SESSION["username"];
 /*$id = $_SESSION["id"]*/;
 require ("../database.php");
   $con = mysqli_connect($servername, $username, $password, $database);
@@ -14,6 +14,17 @@ require ("../database.php");
       $num_padded = sprintf("%04d", $package->count+1);
       $AI = "" . date("Y-md") . "-".$num_padded."";
       endforeach;
+
+
+      $userid = $_GET['userid'];
+    /*    echo $userid;
+    echo "'select * from inspected where status = 1 and userid = '".$userid."' '";*/
+    $sql_insp = 'select * from inspected where status = 1 and userid = "'.$userid.'" ';
+
+    $statement = $connection->prepare($sql_insp);
+    $statement->execute();
+    $inspected = $statement->fetchAll(PDO::FETCH_OBJ);
+    foreach($inspected as $package):
 if(isset($_POST['btn_submit_sum']))
 {
           $first_name = $_POST['first_name'];
@@ -33,15 +44,17 @@ if(isset($_POST['btn_submit_sum']))
 
           $unit = $_POST['unit'];
 
+
+           $update2 = mysqli_query($con,"UPDATE new_logs SET created_new_by = '".$username1."', created_new = 'Created OOP', created_new_date = NOW() 
+      WHERE toda = '".$package->toda."' AND toda_no = '".$package->toda_no."'  ;") or die(mysqli_error($con));
           $insert = mysqli_query($con,"INSERT INTO trb_db_master.tricycle_operator VALUES  (NULL, '".$first_name."', '".$middle_name ."', '".$last_name."', '".$house_no."', '".$street."', '".$barangay."', '".$city."', '".$case_no."', '".$toda."', '".$toda_no."', '".$make."', '".$motor_no."', '".$chasis_no."', '".$plate_no."', NOW() , '".$unit."',1,1);") or die(mysqli_error($con));
 
            $delete = mysqli_query($con,"UPDATE  trb_db_master.inspected set status= 0, seen_status= 0 WHERE inspected.toda_no = '".$toda_no."' ;") or die(mysqli_error($con));
-
-/*   echo "INSERT INTO trb_db.tricycle_operator VALUES  (NULL, '".$first_name."', '".$middle_name ."', '".$last_name."', '".$house_no."', '".$street."', '".$barangay."', '".$city."', '".$case_no."', '".$toda."', '".$toda_no."', '".$make."', '".$motor_no."', '".$chasis_no."', '".$plate_no."', NOW() , '".$unit."', 1);";*/
       echo "<script type='text/javascript'>window.location.href = 'new.php';</script>";
 
 }
           ?>
+
 
 
 
@@ -235,21 +248,6 @@ if(isset($_POST['btn_submit_sum']))
 
 
 
-          <?php
-
-
-                      $userid = $_GET['userid'];
-                 /*    echo $userid;
-                     echo "'select * from inspected where status = 1 and userid = '".$userid."' '";*/
-                     $sql_insp = 'select * from inspected where status = 1 and userid = "'.$userid.'" ';
-
-                    $statement = $connection->prepare($sql_insp);
-                    $statement->execute();
-                    $inspected = $statement->fetchAll(PDO::FETCH_OBJ);
-                      foreach($inspected as $package):
-
-
-                    ?>
 
 
           <div class="container">

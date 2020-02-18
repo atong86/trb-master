@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2020 at 11:16 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Feb 18, 2020 at 02:31 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -74,7 +74,54 @@ INSERT INTO `inspected` (`userid`, `toda_no`, `toda`, `inspector`, `ins_date`, `
 (43, '77', 'TODAY', 'atong@email.com', '2020-02-14 17:25:36', 0, 0),
 (44, '76', 'TODAY', 'inspector@email.com', '2020-02-14 17:32:41', 0, 0),
 (45, '676', 'TODAT', 'inspector@email.com', '2020-02-14 17:37:26', 0, 0),
-(46, '45', 'TODAW', 'inspector@email.com', '2020-02-14 17:40:42', 0, 0);
+(46, '45', 'TODAW', 'inspector@email.com', '2020-02-14 17:40:42', 0, 0),
+(47, '5', 'F.Roman', 'head@email.com', '2020-02-15 23:30:35', 0, 0),
+(48, '25', 'F.Roman', 'head@email.com', '2020-02-16 00:36:12', 0, 0),
+(49, '25', 'Agora', 'inspector@email.com', '2020-02-17 22:39:18', 0, 0),
+(50, '123', 'Agora', 'head@email.com', '2020-02-18 20:54:44', 0, 1),
+(51, '255', 'F.Roman', 'head@email.com', '2020-02-18 20:55:51', 0, 1),
+(52, '255', 'F.Roman', 'head@email.com', '2020-02-18 20:55:57', 0, 1),
+(53, '255', 'F.Roman', 'head@email.com', '2020-02-18 20:56:24', 0, 1),
+(54, '255', 'F.Roman', 'head@email.com', '2020-02-18 20:57:02', 0, 1),
+(55, '08', 'Agora', 'head@email.com', '2020-02-18 21:01:44', 0, 1),
+(56, '08', 'Agora', 'head@email.com', '2020-02-18 21:02:08', 0, 1),
+(57, '02', 'Agora', 'head@email.com', '2020-02-18 21:02:43', 0, 0),
+(58, '12', 'testjoseph', 'head@email.com', '2020-02-18 21:10:32', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `new_logs`
+--
+
+CREATE TABLE `new_logs` (
+  `id_log` int(6) NOT NULL,
+  `toda` text NOT NULL,
+  `toda_no` text NOT NULL,
+  `inspected` text NOT NULL,
+  `inspected_by` text NOT NULL,
+  `inspected_date` text NOT NULL,
+  `created_oop` text NOT NULL,
+  `created_oop_by` text NOT NULL,
+  `created_oop_date` text NOT NULL,
+  `payment_received` text NOT NULL,
+  `payment_received_by` text NOT NULL,
+  `payment_received_date` text NOT NULL,
+  `created_new` text NOT NULL,
+  `created_new_by` text NOT NULL,
+  `created_new_date` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `new_logs`
+--
+
+INSERT INTO `new_logs` (`id_log`, `toda`, `toda_no`, `inspected`, `inspected_by`, `inspected_date`, `created_oop`, `created_oop_by`, `created_oop_date`, `payment_received`, `payment_received_by`, `payment_received_date`, `created_new`, `created_new_by`, `created_new_date`) VALUES
+(1, 'Agora', '25', 'Inspected', 'inspector@email.com', '2020-02-17 22:39:18', '', '', '', 'Paid', 'head@email.com', '2020-02-18 21:22:15', '', '', ''),
+(2, 'F.Roman', '255', 'inspected', 'head@email.com', '2020-02-18 20:57:02', '1', '1', '1', '', '', '', '', '', ''),
+(3, 'Agora', '08', 'inspected', 'head@email.com', '2020-02-18 21:02:08', '1', '1', '1', '1', '1', '1', '1', '1', '1'),
+(4, 'Agora', '02', 'inspected', 'head@email.com', '2020-02-18 21:02:43', '1', '1', '1', '1', '1', '1', 'Created OOP', 'head@email.com', '2020-02-18 21:07:31'),
+(5, 'testjoseph', '12', 'inspected', 'head@email.com', '2020-02-18 21:10:32', 'Created OOP sa', 'head@email.com', '2020-02-18 21:12:41', 'Paid', 'head@email.com', '2020-02-18 21:22:41', 'Created OOP', 'head@email.com', '2020-02-18 21:10:58');
 
 -- --------------------------------------------------------
 
@@ -144,7 +191,22 @@ INSERT INTO `or_payments` (`id_payment`, `id_no`, `reg_fee`, `mch`, `reg_sticker
 (35, 43, 150, 0, 0, 0, 0, 0, 0, 0, 0, '', '150', '', '2020-02-14 17:19:03', 1),
 (36, 46, 0, 100, 0, 0, 0, 0, 0, 0, 0, '', '100', '4589', '2020-02-14 17:26:36', 1),
 (37, 47, 0, 0, 0, 0, 0, 0, 1500, 0, 0, '', '1,500', '1231', '2020-02-14 17:33:44', 1),
-(38, 50, 0, 0, 0, 0, 0, 0, 1500, 0, 0, '', '1,500', '20145', '2020-02-14 17:41:35', 1);
+(38, 50, 0, 0, 0, 0, 0, 0, 1500, 0, 0, '', '1,500', '20145', '2020-02-14 17:41:35', 1),
+(39, 33, 150, 100, 200, 0, 0, 0, 0, 0, 0, '12', '450', '0034', '2020-02-18 20:19:17', 1),
+(40, 34, 150, 0, 0, 0, 0, 0, 0, 0, 0, '', '150', '0034', '2020-02-18 20:30:37', 1),
+(41, 34, 150, 0, 0, 0, 0, 0, 0, 0, 0, '', '150', '0034', '2020-02-18 20:31:08', 1),
+(42, 51, 150, 100, 0, 0, 0, 0, 0, 0, 0, '', '250', '0034', '2020-02-18 20:31:20', 1),
+(43, 51, 150, 100, 0, 0, 0, 0, 0, 0, 0, '', '250', '0034', '2020-02-18 20:31:28', 1),
+(44, 49, 150, 0, 0, 0, 0, 0, 0, 0, 100, '', '250', '0034', '2020-02-18 20:31:41', 1),
+(45, 49, 150, 0, 0, 0, 0, 0, 0, 0, 100, '', '250', '0034', '2020-02-18 20:34:11', 1),
+(46, 39, 2, 2, 200, 300, 300, 500, 1500, 100, 100, '', '3,100', '0034', '2020-02-18 20:34:26', 1),
+(47, 39, 0, 0, 0, 300, 300, 500, 1500, 100, 100, '', '3,100', '0034', '2020-02-18 20:38:38', 1),
+(48, 45, 0, 0, 0, 0, 300, 0, 0, 0, 100, '', '600', '0034', '2020-02-18 20:38:51', 1),
+(49, 45, 0, 0, 0, 0, 300, 0, 0, 0, 100, '', '600', '0034', '2020-02-18 20:39:01', 1),
+(50, 52, 150, 0, 0, 0, 0, 0, 0, 0, 0, '', '150', '0035', '2020-02-18 20:51:43', 1),
+(51, 52, 150, 0, 0, 0, 0, 0, 0, 0, 0, '', '150', '0035', '2020-02-18 20:52:30', 1),
+(52, 53, 150, 0, 0, 0, 0, 0, 0, 0, 0, '', '150', '0036', '2020-02-18 21:09:44', 1),
+(53, 54, 0, 0, 0, 0, 0, 0, 0, 100, 0, '', '200', '0037', '2020-02-18 21:12:41', 1);
 
 -- --------------------------------------------------------
 
@@ -179,38 +241,42 @@ CREATE TABLE `tricycle_operator` (
 --
 
 INSERT INTO `tricycle_operator` (`id_no`, `first_name`, `middle_name`, `last_name`, `house_no`, `street`, `barangay`, `city`, `case_no`, `toda`, `toda_no`, `make`, `motor_no`, `chasis_no`, `plate_no`, `date`, `unit`, `status`, `seen_status`) VALUES
-(16, 'Atong', 'P', 'Francisco', '1111', 'WASS', 'BARS', 'San Juan', 'CN1111', 'TODAG', 1111, 'Honda', 'MN-1111', 'CN-1111', 'PN-1111', '2020-02-11 15:30:36', 1, 5, 2),
-(17, 'qwert', 'a', 'asdf', '123', 'DF', 'SJDC', 'San Juan City', 'CN789', 'Toda', 12, 'Honda', 'MN-789', 'CN789', 'PN789', '2020-02-11 16:18:42', 1, 5, 2),
-(18, 'A', 'B', 'C', '1', 'D', 'E', 'F', 'CN564', 'AGORA', 23, 'Honda', 'MN7894', 'CN7894', 'PN7894', '2020-02-11 16:32:54', 1, 5, 2),
-(19, 'AS', 'O', 'NOW', '90', 'OPT', 'NUGY', 'SAN J', 'CN4500', 'AGORA', 45, 'Honda', 'MN09090909', 'CN09090909090', 'PN8976', '2020-02-11 16:36:52', 1, 5, 2),
-(21, 'ARE', 'U', 'READY', '12', 'STREET', 'FIGHTER', 'SAN JUAN', 'CN-89898', 'DOMAN', 45, 'HONDA', 'MN789789', 'CN789789', 'PN9874', '2020-02-11 16:53:29', 1, 5, 2),
-(22, 'SA', 'TO', 'DA', '12', 'SAD', 'DAS', 'SJ', '987', 'SATODA', 987, 'HONDA', 'MN1234557', 'CN-123456789', 'PN0989', '2020-02-11 17:35:09', 1, 5, 2),
-(23, 'AKO', 'L', 'ANG', '12', 'STEEL', 'BAKAL', 'San Juan', '2020-0404', 'DOMAN', 43, 'Honda', 'MN-0808', 'CN-0808', 'PN0808', '2020-02-11 18:07:03', 1, 5, 2),
-(24, 'MAN', 'L', 'OKO', '12', 'DEWQ', 'OPS', 'SAN YUN', '2020-7878', 'TODAW', 78, 'HONDEI', 'MN0909', 'CN7898', 'PN56867', '2020-02-11 18:54:36', 1, 5, 2),
-(25, 'ARE', 'U', 'HU', '88', 'SEW', 'TUY', 'SAN JI', '2020-9090', 'TODAY', 90, 'KTM', 'MN89088', 'CN679', 'PN8956', '2020-02-11 19:05:00', 1, 5, 2),
-(26, 'ME', 'N', 'MY', '77', 'TER', 'RETE', 'SANJU', '2020-58788', 'TODAY', 89, 'HOUDU', 'MN6789', 'CN5689', 'PN5686', '2020-02-11 19:09:56', 1, 5, 2),
-(27, 'A', 'B', 'C', '1', 'S', 'B', 'C', '2020-12', 'TODAS', 12, 'Honda', 'MN5656', 'CN5656', 'PN5656', '2020-02-12 10:49:35', 1, 5, 2),
-(28, 'Lourdes', 'D', 'Santiago', '1', 'Narciso', 'Corazon', 'SANJU', '2020-0212-0001', 'BAGORA', 1, 'Honda', 'MN-0123456', 'CN-9383811', 'PN9087', '2020-02-12 11:48:04', 1, 5, 2),
-(29, 'E', 'R', 'G', '1', 'STR', 'TIY', 'SNAJI', '2020-59874', 'TODAS', 213, 'HONDO', 'MN8921', 'CN1234', 'PN8832', '2020-02-12 11:58:08', 1, 5, 2),
-(30, 'F', 'U', 'L', '4', 'huy', 'Bar', 'Cit', '2020-7894', 'AGORA', 34, 'Honda', 'MN-909023', 'CN-909023', 'PN8756', '2020-02-12 12:24:11', 1, 5, 2),
-(31, 'kK', 'k', 'K', '1', 'asdasd', 'as', 'san', '202025465464', 'Agora', 23, 'honda', 'mn3231', 'cn-99898', 'pn3323', '2020-02-12 13:59:00', 1, 5, 2),
-(32, 'AL', 'A', 'Pagalilawan', '23', 'PUP', 'Additionhills', 'sanju', '2020', 'Agora', 78, 'honda', 'MN9090', 'CN9090', 'PN9090', '2020-02-12 14:51:16', 1, 5, 2),
-(33, 'Mickey', 'M.', 'Mouse', '1', 'Wu', 'Han', 'SanJI', '2020-0213-8888', 'TODAK', 88, 'HOnda', 'MN8888', 'CN8888', 'PN8888', '2020-02-13 13:41:21', 1, 1, 2),
-(34, 'CJ', 'B', 'Sarmiento', '1', 'Purez', 'Sta mesa', ' Manila', '2020-0213-2013', 'TODAP', 2013, 'Honda', 'MN92345', 'CN12345', 'PN9021', '2020-02-13 14:49:25', 1, 1, 2),
-(35, 'JOHN', 'L', 'LENON', '1', 'WALL', 'SAN', 'JUAN', '2020-0214-45', 'TODAK', 45, 'HONDA', 'MN4545', 'CN4545', 'PN4545', '2020-02-14 08:58:18', 1, 5, 2),
-(36, 'Atong', 'P', 'Francisco', '1', 'Pinaglabanan', 'Corazon', 'San Juan City', '2020-0214-0101', 'TODAK', 1, 'Honda', 'MN0101', 'CN0101', 'PN0101', '2020-02-14 11:06:32', 1, 5, 2),
-(37, 'LIT', 'O', 'LITS', '1', 'WER', 'TER', 'SAN JUAN', '2020-0214-0123', 'TODAR', 123, 'HONDA', 'MN-0123', 'CN-0123', 'PN0123', '2020-02-14 15:25:07', 1, 5, 1),
-(38, 'Ali', 'P', 'Io', '2', 'Sert', 'Cora', 'An Ju', '2020-0214-66', 'TODAY', 66, 'Honda', 'MN-66', 'CN66', 'pn66', '2020-02-14 16:12:49', 1, 5, 1),
-(39, 'A', 'b', 'P', '^', 'ERT', 'SAN', '', '2020-76', 'AGOGO', 76, 'Honda', 'MN-89', 'Cn090', 'PN999', '2020-02-14 16:18:56', 1, 1, 1),
-(40, 'KL', 'P', 'HR', '90', 'WER', 'PasadeÃ±a', 'San Juan City M.M.', '2020-35', 'TODAJ', 35, 'HONDA', 'MN-90', 'CN-90', 'PN-90', '2020-02-14 16:46:26', 1, 2, 1),
-(42, 'AT', 'O', 'FRA', '23', 'NU', 'PasadeÃ±a', 'San Juan City M.M.', '2020-4567', 'TOPAK', 4567, 'HONDA', 'MN-9876', 'CN9034', 'PN9099', '2020-02-14 17:16:32', 1, 1, 1),
-(43, 'AT', 'N', 'YUR', '78', 'GEN', 'ErmitaÃ±o', 'San Juan City M.M.', '2020-738', 'TODAT', 738, 'HONDA', 'MN92741', 'CN34564', 'PN37575', '2020-02-14 17:18:47', 1, 2, 1),
-(44, 'YU', 'G', 'IN', '8', 'YUT', 'PasadeÃ±a', 'San Juan City M.M.', '2020-0214-7894', 'TODAT', 89, 'HONDA', 'MN455454', 'CN34521', 'PN7843', '2020-02-14 17:21:39', 1, 1, 1),
-(45, 'TUY', 'Y', 'REG', '8', 'TER', 'Balong-Bato', 'San Juan City M.M.', '2020-45687', 'TODAW', 89, 'KAWASAKI', 'MN8979', 'CN7374', 'PN7383', '2020-02-14 17:25:14', 1, 1, 1),
-(46, 'JUH', 'G', 'MAW', '7', 'SYTEE', 'ErmitaÃ±o', 'San Juan City M.M.', '2020-78542', 'TODAY', 77, 'HONAD', 'MN2122', 'CN37474', 'PNYYRR7', '2020-02-14 17:26:21', 1, 2, 1),
-(47, 'ATONG', 'P', 'FRANCISCO', '12', 'YUN', 'PasadeÃ±a', 'San Juan City M.M.', '2020-78945', 'TODAY', 76, 'HONDA', 'MN8923', 'CN3421', 'PN3452', '2020-02-14 17:33:20', 1, 5, 1),
-(49, 'YU', 'H', 'YUT', 'T', 'H', 'ErmitaÃ±o', 'San Juan City M.M.', '2020-789421', 'TODAT', 676, 'HONDA', 'MN787', 'CNYET', 'PN637', '2020-02-14 17:38:29', 1, 1, 1),
-(50, 'UI', 'A', 'NO', '78', 'YTER', 'Ermitano', 'San Juan City M.M.', '2020-78521', 'TODAW', 45, 'HONDA', 'MN9023', 'CN7634', 'PN37482', '2020-02-14 17:41:17', 1, 2, 1);
+(16, 'Atong', 'P', 'Francisco', '1111', 'WASS', 'BARS', 'San Juan', 'CN1111', 'TODAG', 1111, 'Honda', 'MN-1111', 'CN-1111', 'PN-1111', '2020-02-11 15:30:36', 1, 5, 0),
+(17, 'qwert', 'a', 'asdf', '123', 'DF', 'SJDC', 'San Juan City', 'CN789', 'Toda', 12, 'Honda', 'MN-789', 'CN789', 'PN789', '2020-02-11 16:18:42', 1, 5, 0),
+(18, 'A', 'B', 'C', '1', 'D', 'E', 'F', 'CN564', 'AGORA', 23, 'Honda', 'MN7894', 'CN7894', 'PN7894', '2020-02-11 16:32:54', 1, 5, 0),
+(19, 'AS', 'O', 'NOW', '90', 'OPT', 'NUGY', 'SAN J', 'CN4500', 'AGORA', 45, 'Honda', 'MN09090909', 'CN09090909090', 'PN8976', '2020-02-11 16:36:52', 1, 5, 0),
+(21, 'ARE', 'U', 'READY', '12', 'STREET', 'FIGHTER', 'SAN JUAN', 'CN-89898', 'DOMAN', 45, 'HONDA', 'MN789789', 'CN789789', 'PN9874', '2020-02-11 16:53:29', 1, 5, 0),
+(22, 'SA', 'TO', 'DA', '12', 'SAD', 'DAS', 'SJ', '987', 'SATODA', 987, 'HONDA', 'MN1234557', 'CN-123456789', 'PN0989', '2020-02-11 17:35:09', 1, 5, 0),
+(23, 'AKO', 'L', 'ANG', '12', 'STEEL', 'BAKAL', 'San Juan', '2020-0404', 'DOMAN', 43, 'Honda', 'MN-0808', 'CN-0808', 'PN0808', '2020-02-11 18:07:03', 1, 5, 0),
+(24, 'MAN', 'L', 'OKO', '12', 'DEWQ', 'OPS', 'SAN YUN', '2020-7878', 'TODAW', 78, 'HONDEI', 'MN0909', 'CN7898', 'PN56867', '2020-02-11 18:54:36', 1, 5, 0),
+(25, 'ARE', 'U', 'HU', '88', 'SEW', 'TUY', 'SAN JI', '2020-9090', 'TODAY', 90, 'KTM', 'MN89088', 'CN679', 'PN8956', '2020-02-11 19:05:00', 1, 5, 0),
+(26, 'ME', 'N', 'MY', '77', 'TER', 'RETE', 'SANJU', '2020-58788', 'TODAY', 89, 'HOUDU', 'MN6789', 'CN5689', 'PN5686', '2020-02-11 19:09:56', 1, 5, 0),
+(27, 'A', 'B', 'C', '1', 'S', 'B', 'C', '2020-12', 'TODAS', 12, 'Honda', 'MN5656', 'CN5656', 'PN5656', '2020-02-12 10:49:35', 1, 5, 0),
+(28, 'Lourdes', 'D', 'Santiago', '1', 'Narciso', 'Corazon', 'SANJU', '2020-0212-0001', 'BAGORA', 1, 'Honda', 'MN-0123456', 'CN-9383811', 'PN9087', '2020-02-12 11:48:04', 1, 5, 0),
+(29, 'E', 'R', 'G', '1', 'STR', 'TIY', 'SNAJI', '2020-59874', 'TODAS', 213, 'HONDO', 'MN8921', 'CN1234', 'PN8832', '2020-02-12 11:58:08', 1, 5, 0),
+(30, 'F', 'U', 'L', '4', 'huy', 'Bar', 'Cit', '2020-7894', 'AGORA', 34, 'Honda', 'MN-909023', 'CN-909023', 'PN8756', '2020-02-12 12:24:11', 1, 5, 0),
+(31, 'kK', 'k', 'K', '1', 'asdasd', 'as', 'san', '202025465464', 'Agora', 23, 'honda', 'mn3231', 'cn-99898', 'pn3323', '2020-02-12 13:59:00', 1, 5, 0),
+(32, 'AL', 'A', 'Pagalilawan', '23', 'PUP', 'Additionhills', 'sanju', '2020', 'Agora', 78, 'honda', 'MN9090', 'CN9090', 'PN9090', '2020-02-12 14:51:16', 1, 5, 0),
+(33, 'Mickey', 'M.', 'Mouse', '1', 'Wu', 'Han', 'SanJI', '2020-0213-8888', 'TODAK', 88, 'HOnda', 'MN8888', 'CN8888', 'PN8888', '2020-02-13 13:41:21', 1, 2, 0),
+(34, 'CJ', 'B', 'Sarmiento', '1', 'Purez', 'Sta mesa', ' Manila', '2020-0213-2013', 'TODAP', 2013, 'Honda', 'MN92345', 'CN12345', 'PN9021', '2020-02-13 14:49:25', 1, 2, 0),
+(35, 'JOHN', 'L', 'LENON', '1', 'WALL', 'SAN', 'JUAN', '2020-0214-45', 'TODAK', 45, 'HONDA', 'MN4545', 'CN4545', 'PN4545', '2020-02-14 08:58:18', 1, 5, 0),
+(36, 'Atong', 'P', 'Francisco', '1', 'Pinaglabanan', 'Corazon', 'San Juan City', '2020-0214-0101', 'TODAK', 1, 'Honda', 'MN0101', 'CN0101', 'PN0101', '2020-02-14 11:06:32', 1, 5, 0),
+(37, 'LIT', 'O', 'LITS', '1', 'WER', 'TER', 'SAN JUAN', '2020-0214-0123', 'TODAR', 123, 'HONDA', 'MN-0123', 'CN-0123', 'PN0123', '2020-02-14 15:25:07', 1, 5, 0),
+(38, 'Ali', 'P', 'Io', '2', 'Sert', 'Cora', 'An Ju', '2020-0214-66', 'TODAY', 66, 'Honda', 'MN-66', 'CN66', 'pn66', '2020-02-14 16:12:49', 1, 5, 0),
+(39, 'A', 'b', 'P', '^', 'ERT', 'SAN', '', '2020-76', 'AGOGO', 76, 'Honda', 'MN-89', 'Cn090', 'PN999', '2020-02-14 16:18:56', 1, 2, 0),
+(40, 'KL', 'P', 'HR', '90', 'WER', 'PasadeÃ±a', 'San Juan City M.M.', '2020-35', 'TODAJ', 35, 'HONDA', 'MN-90', 'CN-90', 'PN-90', '2020-02-14 16:46:26', 1, 5, 0),
+(42, 'AT', 'O', 'FRA', '23', 'NU', 'PasadeÃ±a', 'San Juan City M.M.', '2020-4567', 'TOPAK', 4567, 'HONDA', 'MN-9876', 'CN9034', 'PN9099', '2020-02-14 17:16:32', 1, 1, 0),
+(43, 'AT', 'N', 'YUR', '78', 'GEN', 'ErmitaÃ±o', 'San Juan City M.M.', '2020-738', 'TODAT', 738, 'HONDA', 'MN92741', 'CN34564', 'PN37575', '2020-02-14 17:18:47', 1, 2, 0),
+(44, 'YU', 'G', 'IN', '8', 'YUT', 'PasadeÃ±a', 'San Juan City M.M.', '2020-0214-7894', 'TODAT', 89, 'HONDA', 'MN455454', 'CN34521', 'PN7843', '2020-02-14 17:21:39', 1, 1, 0),
+(45, 'TUY', 'Y', 'REG', '8', 'TER', 'Balong-Bato', 'San Juan City M.M.', '2020-45687', 'TODAW', 89, 'KAWASAKI', 'MN8979', 'CN7374', 'PN7383', '2020-02-14 17:25:14', 1, 2, 0),
+(46, 'JUH', 'G', 'MAW', '7', 'SYTEE', 'ErmitaÃ±o', 'San Juan City M.M.', '2020-78542', 'TODAY', 77, 'HONAD', 'MN2122', 'CN37474', 'PNYYRR7', '2020-02-14 17:26:21', 1, 2, 0),
+(47, 'ATONG', 'P', 'FRANCISCO', '12', 'YUN', 'PasadeÃ±a', 'San Juan City M.M.', '2020-78945', 'TODAY', 76, 'HONDA', 'MN8923', 'CN3421', 'PN3452', '2020-02-14 17:33:20', 1, 5, 0),
+(49, 'YU', 'H', 'YUT', 'T', 'H', 'ErmitaÃ±o', 'San Juan City M.M.', '2020-789421', 'TODAT', 676, 'HONDA', 'MN787', 'CNYET', 'PN637', '2020-02-14 17:38:29', 1, 2, 0),
+(50, 'UI', 'A', 'NO', '78', 'YTER', 'Ermitano', 'San Juan City M.M.', '2020-78521', 'TODAW', 45, 'HONDA', 'MN9023', 'CN7634', 'PN37482', '2020-02-14 17:41:17', 1, 2, 0),
+(51, 'Joseph', 'Arce', 'Rivera Jr', '16', 'C. Leyva', 'Balong-Bato', 'San Juan', '2020-0215-0033', 'F.Roman', 5, 'Make3131', 'Motor no. 2000222', 'Chasis 1231231231', '7777', '2020-02-16 00:10:03', 1, 2, 1),
+(52, 'Joseph', 'Arce', 'Rivera Jr', '15', 'San juan', 'Maytunas', 'Quezon City', '2020-0218-0034', 'Agora', 25, '555', 'Motor no. 200022', '777', '111', '2020-02-18 20:50:36', 1, 2, 1),
+(53, 'Joseph', 'Middle Name', 'Last Name', '111', 'San juan', 'Onse', 'Quezon City', '2020-0218-0035', 'Agora', 2, 'zcqad123', '231asda', '1', 'asad123', '2020-02-18 21:08:12', 1, 2, 1),
+(54, 'Joseph', 'Middle Name', 'Last Name', '1', 'San juan', 'Santa Lucia', 'Quezon City', '2020-0218-0036', 'testjoseph', 12, 'Make3131asd123', 'Motor 12331', '23131', '121231adaa', '2020-02-18 21:10:58', 1, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -255,6 +321,12 @@ ALTER TABLE `inspected`
   ADD PRIMARY KEY (`userid`);
 
 --
+-- Indexes for table `new_logs`
+--
+ALTER TABLE `new_logs`
+  ADD PRIMARY KEY (`id_log`);
+
+--
 -- Indexes for table `new_user`
 --
 ALTER TABLE `new_user`
@@ -293,32 +365,32 @@ ALTER TABLE `user_account`
 -- AUTO_INCREMENT for table `inspected`
 --
 ALTER TABLE `inspected`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
-
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+--
+-- AUTO_INCREMENT for table `new_logs`
+--
+ALTER TABLE `new_logs`
+  MODIFY `id_log` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `new_user`
 --
 ALTER TABLE `new_user`
-  MODIFY `new_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
+  MODIFY `new_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `or_payments`
 --
 ALTER TABLE `or_payments`
-  MODIFY `id_payment` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-
+  MODIFY `id_payment` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 --
 -- AUTO_INCREMENT for table `tricycle_operator`
 --
 ALTER TABLE `tricycle_operator`
-  MODIFY `id_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
+  MODIFY `id_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `user_account`
 --
 ALTER TABLE `user_account`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
-
 --
 -- Constraints for dumped tables
 --

@@ -35,12 +35,16 @@ if(isset($_POST['btn_submit_sum']))
 
           $unit = $_POST['unit'];
 
-          $insert = mysqli_query($con,"INSERT INTO trb_db_master.tricycle_operator VALUES  (NULL, '".$first_name."', '".$middle_name ."', '".$last_name."', '".$house_no."', '".$street."', '".$barangay."', '".$city."', '".$case_no."', '".$toda."', '".$toda_no."', '".$make."', '".$motor_no."', '".$chasis_no."', '".$plate_no."', NOW() , '".$unit."');") or die(mysqli_error($con));
+      /*    $insert = mysqli_query($con,"INSERT INTO trb_db_master.tricycle_operator VALUES  (NULL, '".$first_name."', '".$middle_name ."', '".$last_name."', '".$house_no."', '".$street."', '".$barangay."', '".$city."', '".$case_no."', '".$toda."', '".$toda_no."', '".$make."', '".$motor_no."', '".$chasis_no."', '".$plate_no."', NOW() , '".$unit."');") or die(mysqli_error($con));
 
            $delete = mysqli_query($con,"UPDATE  trb_db_master.inspected set status= 0 WHERE inspected.toda_no = '".$toda_no."' ;") or die(mysqli_error($con));
 
    echo "<script type='text/javascript'>window.location.href = 'new.php';</script>";
+*/
+     $update2 = mysqli_query($con,"UPDATE new_logs SET created_new_by = '".$username1."', created_new = 'Created OOP', created_new_date = NOW() 
+      WHERE toda = '".$package->toda."' AND toda_no = '".$package->toda_no."'  ;") or die(mysqli_error($con));
 
+     
 }
           ?>
 
