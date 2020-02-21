@@ -273,8 +273,7 @@ $con = mysqli_connect($servername, $username, $password, $database);
 
 <script>
 
- setInterval(function(){
-  $( ".fetch-approval" ).load("fetch-approval.php").fadeIn("slow");
+ setInterval(function(){  
     $( ".fetch-notif" ).load("fetch-notif.php").fadeIn("slow");
 
  }, 1000);

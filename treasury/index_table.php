@@ -174,7 +174,9 @@ $con = mysqli_connect($servername, $username, $password, $database);
             <input id="myInput" type="text" placeholder=" Search.." style="display: ; float: right; width: 12%;  ">
           </div>
 
-
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>
+<script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+<link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css' />
 
           <?php
             require ("../database.php");
@@ -187,8 +189,10 @@ $con = mysqli_connect($servername, $username, $password, $database);
             /* WHERE tricycle_operator.status = 2 */
             // INNER JOIN or_payments ON tricycle_operator.id_no = or_payments.id_no;
             echo "<table border='1'  class='table table-striped table-bordered table-hover' id='dataTables-example' style='display:;' >
-                <tr>
-                  <th><b>Toda</b></td></th>
+                        <thead>
+                   <tr>                 
+
+                    <th><b>Toda</b></td></th>
                   <th><b>Toda No.</b></td></th>
                   <th><b>Full Name</b></td></th>
                   <th><b>Full Address</b></td></th>
@@ -196,6 +200,8 @@ $con = mysqli_connect($servername, $username, $password, $database);
                   <th><b>Status</b></td></th>
                   <th><b>OOP</b></td></th>
                   <th><b>Actions</b></td></th>
+                            </tr>
+        </thead>
                   ";
                   foreach($payments as $package):
                     $fname= $package->first_name;
@@ -311,3 +317,8 @@ $con = mysqli_connect($servername, $username, $password, $database);
 </body>
 
 </html>
+ <script>
+ $(document).ready(function(){
+      $('#dataTables-example').DataTable();
+ });
+ </script>

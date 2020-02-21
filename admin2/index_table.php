@@ -164,7 +164,9 @@ $con = mysqli_connect($servername, $username, $password, $database);
                <!-- <i class="fa fa-search" aria-hidden="true"></i> -->
              </div>
 
-
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>
+<script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+<link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css' />
 
           <?php
             require ("../database.php");
@@ -176,6 +178,7 @@ $con = mysqli_connect($servername, $username, $password, $database);
             $payments = $statement->fetchAll(PDO::FETCH_OBJ);
 
             echo "<table border='1'  class='table table-striped table-bordered table-hover' id='dataTables-example' >
+                            <thead>
                     <tr>
                       <th><b>Toda</b></td></th>
                       <th><b  >Toda No.</b></td></th>
@@ -183,6 +186,7 @@ $con = mysqli_connect($servername, $username, $password, $database);
                       <th><b>Address</b></td></th>
                       <th><b>Status</b></td></th>
                       <th><b>Action</b></td></th>
+                      </thead>
                       <tbody id = 'myTable'>
                       ";
                       foreach($payments as $package):
@@ -283,3 +287,8 @@ $con = mysqli_connect($servername, $username, $password, $database);
 </body>
 
 </html>
+ <script>
+ $(document).ready(function(){
+      $('#dataTables-example').DataTable();
+ });
+ </script>

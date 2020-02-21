@@ -1,7 +1,8 @@
 <?php
- $connect = mysqli_connect("localhost", "root", "", "trb_db_master");
+require ("../database.php");
+$con = mysqli_connect($servername, $username, $password, $database);
  $query ="SELECT * FROM tricycle_operator ORDER BY id_no DESC";
- $result = mysqli_query($connect, $query);
+ $result = mysqli_query($con, $query);
  ?>
  <!DOCTYPE html>
  <html>

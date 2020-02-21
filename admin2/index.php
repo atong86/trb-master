@@ -55,13 +55,13 @@ $con = mysqli_connect($servername, $username, $password, $database);
                   </div>
                 </div>
               </div>
-              </a>
+             </a>
             </div>
 
             <!-- renewal card -->
             <div class="col-xl-2 col-md-6 mb-4">
               <a href="renewal.php">
-              <div class="card border-left-success shadow h-100 py-2" >
+              <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -80,7 +80,7 @@ $con = mysqli_connect($servername, $username, $password, $database);
             <!-- new card -->
             <div class="col-xl-2 col-md-6 mb-4">
               <a href="index.php">
-              <div class="card border-left-info shadow h-100 py-2" style="background-color:lightblue">
+              <div class="card border-left-info shadow h-100 py-2" style="background-color: lightblue;">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -142,14 +142,104 @@ $con = mysqli_connect($servername, $username, $password, $database);
         </div>
 
 
-        <div class="">
-          <a href="index_table.php" class="btn btn-info" style="margin-bottom: 1%;"> FILTERED </a>
-          <input id="myInput" type="text" placeholder=" Search.." style="display: block; margin-bottom: 1%; float: right; width: 12%;  ">
-        </div>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-          <div class="fetch-payments" >
-          </div>
+          <script>
+            $(document).ready(function(){
+              $("#filter").on("click", function() {
+                $("#myInput").toggle();
+              });
+              $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable").filter(function() {
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+              });
+            });
+          </script>
+             <!-- <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-bottom:1%;"><a href="http://localhost:8080/trb-master/admin2/"> CLEAR FILTER</a></button> -->
+             <div class="">
+               <a href="index.php" class="btn btn-info" style="margin-bottom: 1%;">UNFILTERED</a>
+               <input id="myInput" type="text" placeholder=" Search.." style="display: block; float: right; width: 12%;  ">
+               <!-- <i class="fa fa-search" aria-hidden="true"></i> -->
+             </div>
 
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>
+<script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+<link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css' />
+
+          <?php
+            require ("../database.php");
+            $con = mysqli_connect($servername, $username, $password, $database);
+
+            $result = 'select * from tricycle_operator';
+            $statement = $connection->prepare($result);
+            $statement->execute();
+            $payments = $statement->fetchAll(PDO::FETCH_OBJ);
+
+            echo "<table border='1'  class='table table-striped table-bordered table-hover' id='dataTables-example' >
+                            <thead>
+                    <tr>
+                      <th><b>Toda</b></td></th>
+                      <th><b  >Toda No.</b></td></th>
+                      <th><b>Full Name</b></td></th>
+                      <th><b>Address</b></td></th>
+                      <th><b>Status</b></td></th>
+                      <th><b>Action</b></td></th>
+                      </thead>
+                      <tbody id = 'myTable'>
+                      ";
+                      foreach($payments as $package):
+                        $fname= $package->first_name;
+                        $mname= $package->middle_name;
+                        $lname= $package->last_name;
+                        $fullname= $lname  .', '. $fname .' '.$mname;
+                        $house_no = $package->house_no;
+                        $street = $package->street;
+                        $barangay = $package->barangay;
+                        $city= $package->city;
+                        $full_add =  $house_no .' '. $street .' '.$barangay.' '.$city;
+                        $stats= $package->status;
+
+                        $new_stat = '';
+                        $display = '';
+                        $display1 ='';
+
+                       if($stats == 1) {
+                         $new_stat= "NO ORDER OF PAYMENT";
+                         $display = "none ;";
+                         $display1 = "inline-block ;";
+                         $display2 = "none ;";
+                       }
+                       else if($stats == 2) {
+                         $new_stat= "SENT TO TREASURY";
+                         $display = "inline-block ;";
+                         $display1 = "none ;";
+                         $display2 = "none ;";
+                       }
+                       else {
+                         $new_stat = "PAID";
+                         $display = "inline-block;";
+                         $display1 = "none ;";
+                         $display2 = "inline-block ;";
+                       }
+
+                        echo "<tr id=".$package->id_no.">";
+                        echo "<td >".$package->toda."</td>";
+                        echo "<td >".$package->toda_no."</td>";
+                        echo "<td >".$fullname."</td>";
+                        echo "<td >".$full_add."</td>";
+                        echo "<td >".$new_stat."</td>";
+                        echo "<td >
+                        <a href='or_payment.php?userid=".$package->id_no."' style= display:".$display1."'>CREATE  OOP</a>
+                        <a href='../treasury/or_payment.php?userid=".$package->id_no."' style= display:".$display2."'>PDF </a></td>";
+                        echo "</tr>";
+                      endforeach;
+
+                      echo "
+                      </tbody>
+                      </table>";
+            ?>
         </div>
         <!-- /.container-fluid -->
       </div>
@@ -170,10 +260,10 @@ $con = mysqli_connect($servername, $username, $password, $database);
   </div>
   <!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -197,3 +287,8 @@ $con = mysqli_connect($servername, $username, $password, $database);
 </body>
 
 </html>
+ <script>
+ $(document).ready(function(){
+      $('#dataTables-example').DataTable();
+ });
+ </script>

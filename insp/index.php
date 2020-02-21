@@ -158,23 +158,9 @@ if(isset($_POST['btn_submit_sum']))
   <!-- </div> -->
 </div>
 
-
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-          <script>
-          $(document).ready(function(){
-          $("#filter").on("click", function() {
-              $("#myInput").toggle();
-
-            });
-          $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myTable").filter(function() {
-              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-
-          });
-          });
-          </script>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>
+<script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+<link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css' />
           <!--
           <div style="float:right;">
           <button style=" margin: 1% 0;" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add new</button>
@@ -308,7 +294,7 @@ if(isset($_POST['btn_submit_sum']))
             <th>Date and Time</th>
           </tr>
         </thead>
-        <tbody id="myTable">
+    
           <?php foreach($packages as $package): ?>
             <tr id="<?= $package->user_id; ?>">
               <td data-target="fullname"><?= $package->toda;?>  <?= $package->toda_no;?> </td>
@@ -316,7 +302,7 @@ if(isset($_POST['btn_submit_sum']))
               <td data-target="fullname"> <?= $package->ins_date;?> </td>
             </tr>
           <?php endforeach; ?>
-        </tbody>
+     
       </table>
 
 </div>
@@ -367,3 +353,8 @@ if(isset($_POST['btn_submit_sum']))
 </body>
 
 </html>
+ <script>
+ $(document).ready(function(){
+      $('#dataTables-example').DataTable();
+ });
+ </script>

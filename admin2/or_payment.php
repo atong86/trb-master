@@ -125,7 +125,7 @@ if(isset($_POST['btn_submit_sum']))
 
 
   $insert = mysqli_query($con,"INSERT INTO or_payments VALUES  (NULL, '".$userid."', '".$reg_fee."', '".$mch."', '".$reg_sticker."', '".$petition."', '".$confirmation."' , '".$inspection."', '".$supervision."', '".$fare_sticker."', '".$plate_sticker."', '".$others."', '".$total_amount."', '".$sticker_no."', NOW(), 1 );") or die(mysqli_error($con));
-  $update = mysqli_query($con,"UPDATE tricycle_operator SET status = 2 WHERE id_no = '".$userid."';") or die(mysqli_error($con));
+  $update = mysqli_query($con,"UPDATE tricycle_operator SET status = 2, seen_status= 1 WHERE id_no = '".$userid."';") or die(mysqli_error($con));
 
    $update2 = mysqli_query($con,"UPDATE new_logs SET created_oop_by = '".$username1."', created_oop = 'Created OOP', created_oop_date = NOW() 
       WHERE toda = '".$package->toda."' AND toda_no = '".$package->toda_no."'  ;") or die(mysqli_error($con));

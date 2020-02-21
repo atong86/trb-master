@@ -1,11 +1,11 @@
+
 <?php
 session_start();
 $username1 = $_SESSION["username"];
 /*$id = $_SESSION["id"]*/;
 require ("../database.php");
 $con = mysqli_connect($servername, $username, $password, $database);
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -59,7 +59,7 @@ $con = mysqli_connect($servername, $username, $password, $database);
             <!-- renewal card -->
             <div class="col-xl-2 col-md-6 mb-4">
               <a href="renewal.php">
-              <div class="card border-left-success shadow h-100 py-2" >
+              <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -139,20 +139,142 @@ $con = mysqli_connect($servername, $username, $password, $database);
 
         </div>
 
-        <div class="">
-          <a href="index_table.php" class="btn btn-info" style="margin-bottom: 1%;">FILTERED</a>
-          <input id="myInput" type="text" placeholder=" Search.." style="display: block; margin-bottom: 1%; float: right; width: 12%;  ">
-        </div>
 
 
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-         <div class="fetch-payments" >
+            <script>
+              $(document).ready(function(){
+                $("#filter").on("click", function() {
+                  $("#myInput").toggle();
+                });
+                $("#myInput").on("keyup", function() {
+                  var value = $(this).val().toLowerCase();
+                  $("#myTable").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                  });
+                });
+              });
+            </script>
+
+<!--
+          <script>
+            $(document).ready(function(){
+              $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#dataTables-example tr").filter(function() {
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+              });
+            });
+          </script>
+-->
+          <div >
+            <a href="index.php" class="btn btn-info" style="margin-bottom: 1%;">UNFILTERED</a>
+            <input id="myInput" type="text" placeholder=" Search.." style="display: ; float: right; width: 12%;  ">
           </div>
+
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>
+<script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+<link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css' />
+
+          <?php
+            require ("../database.php");
+            $con = mysqli_connect($servername, $username, $password, $database);
+            $result = 'SELECT * FROM tricycle_operator INNER JOIN or_payments ON tricycle_operator.id_no = or_payments.id_no where status = 2 ;';
+            $statement = $connection->prepare($result);
+            $statement->execute();
+            $payments = $statement->fetchAll(PDO::FETCH_OBJ);
+
+            /* WHERE tricycle_operator.status = 2 */
+            // INNER JOIN or_payments ON tricycle_operator.id_no = or_payments.id_no;
+            echo "<table border='1'  class='table table-striped table-bordered table-hover' id='dataTables-example' style='display:;' >
+                        <thead>
+                   <tr>                 
+
+                    <th><b>Toda</b></td></th>
+                  <th><b>Toda No.</b></td></th>
+                  <th><b>Full Name</b></td></th>
+                  <th><b>Full Address</b></td></th>
+                  <th><b>Amount</b></td></th>
+                  <th><b>Status</b></td></th>
+                  <th><b>OOP</b></td></th>
+                  <th><b>Actions</b></td></th>
+                            </tr>
+        </thead>
+                  ";
+                  foreach($payments as $package):
+                    $fname= $package->first_name;
+                    $mname= $package->middle_name;
+                    $lname= $package->last_name;
+                    $fullname= $lname .', '. $fname .' '.$mname;
+                    $house_no = $package->house_no;
+                    $street = $package->street;
+                    $barangay = $package->barangay;
+                    $city= $package->city;
+                    $full_add =  $house_no .' '. $street .' '.$barangay.' '.$city;
+                    $stats= $package->status;
+
+                    $display1 ="";
+                    $display2 ="";
+                    $display3 ="";
+
+                    if($stats == 2)
+                    {
+                      $new_stat= "UNPAID";
+                      $display1 = "inline-block;";
+                      $display2 = "inline-block ;";
+                      $display3 = "none;";
+                    }
+                    else if($stats == 5)
+                    {
+                      $new_stat= "PAID";
+                      $display1 = "inline-block ;";
+                      $display2 = "none ;";
+                    }
+                    // $amount = number_format($package->total_amount,2);
+                      echo "<tr id=".$package->id_no.">";
+                      echo "<td >".$package->toda."</td>";
+                      echo "<td >".$package->toda_no."</td>";
+                      echo "<td >".$fullname."</td>";
+                      echo "<td >".$full_add."</td>";
+                      echo "<td >".$package->total_amount."</td>";
+                        echo "<td >".$new_stat."</td>";
+                        echo "<td ><a href='or_payment.php?userid=".$package->id_no."' style= display:".$display1."'> OOP </a></td>";
+
+                      echo "<td >
+                                
+                                  <a onclick='myFunction()' id='sss' href='approve_entry.php?userid=".$package->id_no."' style= display:".$display2."'>   PAY  </a>
+                                  <label style='display:".$display3."'>---</label>
+                            </td>";
+                          endforeach;
+                          echo "</table>";
+            ?>
+
+            <!--<a href='or_payment.php?userid=".$package->id_no."'></a>
+                        <a onclick='myFunction()' id='sss' href='approve_entry.php?userid=".$package->id_no." '>To Admin / Atty</a>
+                -->
+            <script type="text/javascript">
+              function myFunction() {
+                var txt;
+                var r = confirm("Press a button!");
+                if (r == true) {
+     /*document.getElementById("sss").href = "https://www.w3schools.com";*/
+                }
+                else {
+                  document.getElementById("sss").href = "#";
+                }
+              }
+            </script>
+
+            <!-- <div class="fetch-payments" >
+            </div> -->
+
         </div>
         <!-- /.container-fluid -->
-      </div>
-      <!-- End of Main Content -->
-      <!-- Footer -->
+        </div>
+        <!-- End of Main Content -->
+        <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
@@ -195,3 +317,8 @@ $con = mysqli_connect($servername, $username, $password, $database);
 </body>
 
 </html>
+ <script>
+ $(document).ready(function(){
+      $('#dataTables-example').DataTable();
+ });
+ </script>

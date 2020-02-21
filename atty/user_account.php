@@ -20,6 +20,7 @@
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
+
 </head>
 
 <body id="page-top">
@@ -30,25 +31,10 @@
             <h1 class="h3 mb-0 text-gray-800">Tricycle Regulatory Board System (Users Account)</h1>
           </div>
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-          <script>
-          $(document).ready(function(){
-          $("#filter").on("click", function() {
-              $("#myInput").toggle();
-
-            });
-          $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myTable").filter(function() {
-              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-
-          });
-          });
-        </script>
- <input id="myInput" type="text" placeholder=" Search.." style="display: block; margin-bottom: 1%;">
-
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js'></script>
+<script src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js'></script>
+<link rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css' />
+  
        <?php
 require ("../database.php");
 $con = mysqli_connect($servername, $username, $password, $database);
@@ -63,9 +49,11 @@ $result = ' SELECT *
 
 
 
-echo "<table border='1'  class='table table-striped table-bordered table-hover' id='dataTables-example' >
-<tr>
+echo "
 
+<table border='1'  class='table table-striped table-bordered table-hover' id='dataTables-example' >
+ <thead>
+<tr>
 <th><b>Name</b></td></th>
 <th><b>Username</b></td></th>
 <th><b>Phone Number</b></td></th>
@@ -78,8 +66,8 @@ echo "<table border='1'  class='table table-striped table-bordered table-hover' 
 
 <th><b>Action</b></td></th>
 <th><b>Action</b></td></th>
-
-<tbody id='myTable'>";
+</tr>
+</thead>";
    foreach($payments as $package):
       $fname= $package->first_name;
       $lname= $package->last_name;
@@ -123,7 +111,6 @@ echo "<table border='1'  class='table table-striped table-bordered table-hover' 
 
  endforeach;
  echo "
- </tbody>
  </table>";
 ?>
 <script type="text/javascript">
@@ -186,3 +173,8 @@ echo "<table border='1'  class='table table-striped table-bordered table-hover' 
 </body>
 
 </html>
+ <script>
+ $(document).ready(function(){
+      $('#dataTables-example').DataTable();
+ });
+ </script>

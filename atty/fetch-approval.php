@@ -1,3 +1,8 @@
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" /> -->
 <?php
 require ("../database.php");
 $con = mysqli_connect($servername, $username, $password, $database);
@@ -11,7 +16,8 @@ $result = ' SELECT *
 
 
 
-echo "<table border='1'  class='table table-striped table-bordered table-hover' id='dataTables-example' >
+echo "<table border='1'  class='table table-striped table-bordered table-hover' id='dataTables-example' style='width: 100%' >
+ <thead>
 <tr>
 
 <th><b>Toda</b></td></th>
@@ -22,6 +28,8 @@ echo "<table border='1'  class='table table-striped table-bordered table-hover' 
 <th><b>Status</b></td></th>
 <th><b>OOP</b></td></th>
 <th><b>Actions</b></td></th>
+</tr>
+</thead>
 ";
    foreach($payments as $package):
       $fname= $package->first_name;
@@ -85,4 +93,8 @@ echo "<table border='1'  class='table table-striped table-bordered table-hover' 
 
 
 }}
-</script>
+
+ $(document).ready(function(){
+      $('#dataTables-example').DataTable();
+ });
+ </script>
