@@ -167,7 +167,9 @@ echo "<table border='1'  class='table table-striped table-bordered table-hover' 
 <th><b>Amount</b></td></th>
 <th><b>Status</b></td></th>
 <th><b>OOP</b></td></th>
-<th><b>Actions</b></td></th>
+<th><b>Franchise</b></td></th>
+<th><b>Route Slip</b></td></th>
+
 </tr>
 </thead>
 ";
@@ -210,10 +212,13 @@ echo "<table border='1'  class='table table-striped table-bordered table-hover' 
     <label style='display:".$display2."'>---</label></td>";
 
     echo "<td >
-            <a href='generate.php?userid=".$package->id_no."'style= display:".$display1."'>Generate</a>
+            <a href='generate.php?userid=".$package->id_no."'style= display:".$display1."'>Franchise</a>
             <label style='display:".$display2."'>---</label>
           </td>";
-
+    echo "<td >
+            <a href='route_slip.php?userid=".$package->id_no."'style= display:".$display1."'>Route Slip</a>
+            <label style='display:".$display2."'>---</label>
+          </td>";
  endforeach;
  echo "</table>";
 ?>

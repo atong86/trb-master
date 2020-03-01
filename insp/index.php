@@ -6,13 +6,60 @@ require ("../database.php");
 $con = mysqli_connect($servername, $username, $password, $database);
 if(isset($_POST['btn_submit_sum']))
 {
+
+if (!isset($_POST['opt1'])) {
+         $opt1 = '0';
+    } 
+else {
+         $opt1 = $_POST['opt1'];
+    }
+
+
+if (!isset($_POST['opt2'])) {
+         $opt2 = '0';
+    } 
+else {
+         $opt2 = $_POST['opt2'];
+    }
+
+
+
+if (!isset($_POST['opt3'])) {
+         $opt3 = '0';
+    } 
+else {
+         $opt3 = $_POST['opt3'];
+    }
+
+
+
+if (!isset($_POST['opt4'])) {
+         $opt4 = '0';
+    } 
+else {
+         $opt4 = $_POST['opt4'];
+    }
+
+
+
+if (!isset($_POST['opt5'])) {
+         $opt5 = '0';
+    } 
+else {
+         $opt5 = $_POST['opt5'];
+    }
+
+
+
+
   $toda_no = $_POST['toda_no'];
   $toda = $_POST['toda'];
-  $insert = mysqli_query($con,"INSERT INTO inspected VALUES  (NULL, '".$toda_no."','".$toda."', '".$username1 ."', NOW() , 1, 1) ;") or die(mysqli_error($con));
+  $insert = mysqli_query($con,"INSERT INTO inspected VALUES  (NULL, '".$toda_no."','".$toda."', '".$username1 ."', NOW() , 1, '".$opt1."', '".$opt2 ."', '".$opt3 ."', '".$opt4 ."', '".$opt5 ."', 1) ;") or die(mysqli_error($con));
 
   //For logs
   $insert2 = mysqli_query($con,"INSERT INTO new_logs VALUES  (NULL, '".$toda."','".$toda_no."','inspected', '".$username1 ."', NOW() , ' ', ' ',' ', ' ', ' ',' ', ' ', ' ',' ') ;") or die(mysqli_error($con));
   echo "<script type='text/javascript'>window.location.href = 'index.php';</script>";
+/*  echo "INSERT INTO inspected VALUES  (NULL, '".$toda_no."','".$toda."', '".$username1 ."', NOW() , 1, '".$opt1."', '".$opt2 ."', '".$opt3 ."', '".$opt4 ."', '".$opt5 ."', 1";*/
 }
 ?>
 <!DOCTYPE html>
@@ -169,7 +216,7 @@ if(isset($_POST['btn_submit_sum']))
           -->
           <!-- Content Row -->
          <div class="modal fade" id="myModal" role="dialog">
-           <div class="modal-dialog" role="document">
+           <div class="modal-dialog  modal-lg" role="document">
              <div class="modal-content">
 
                <div class="modal-header">
@@ -183,55 +230,237 @@ if(isset($_POST['btn_submit_sum']))
                 <div id="requirements">
 
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id=" ">
-                    <label class="form-check-label" for="defaultCheck1">
+<!--                     <input class="form-check-input" type="checkbox" value="" id=" ">
+                    <label class="form-check-label" for="defaultCheck1"> -->
                      Requirements for New Applicant
                     </label>
                     <ul>
-                      <li>Terminal Clearance</li>
-                      <li>Barangay Clearance</li>
-                      <li>OR-CR</li>
-                      <li>Voters Certificate</li>
-                      <li>Cedula</li>
-                      <li>Drug Test (Operator)</li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" ">
+                        <label class="form-check-label" for="defaultCheck1">
+                        Terminal Clearance 
+                          <span style="color:red">*</span>
+                      </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" ">
+                        <label class="form-check-label" for="defaultCheck1">
+                      Barangay Clearance 
+                          <span style="color:red">*</span>
+                      </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" ">
+                        <label class="form-check-label" for="defaultCheck1">
+                      OR-CR
+                          <span style="color:red">*</span>
+                      </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" ">
+                        <label class="form-check-label" for="defaultCheck1">
+                      Voters Certificate
+                          <span style="color:red">*</span>
+                      </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" ">
+                        <label class="form-check-label" for="defaultCheck1">
+                      Cedula
+                          <span style="color:red">*</span>
+                      </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" ">
+                        <label class="form-check-label" for="defaultCheck1">
+                      Drug Test (Operator)
+                          <span style="color:red">*</span>
+                      </li>
                     </ul>
                   </div>
 
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id=" " >
-                    <label class="form-check-label" for="defaultCheck1">
                      Checklist Complete
                    </label><br>
                     <ul style="width: 50%; float:left;">
-                      <li>Head Light</li>
-                      <li>Signal Light</li>
-                      <li>Brake Light</li>
-                      <li>Horn</li>
-                      <li>Chain Cover</li>
-                      <li>Wind Shield</li>
-                      <li>Side Car Side Mirror</li>
-                      <li>Side Mirror MC</li>
-                      <li>Wind Shield</li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Head Light
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Signal Light
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Brake Light
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Horn
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Chain Cover
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Wind Shield
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Side Car Side Mirror
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Side Mirror MC
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                       <label class="form-check-label" for="defaultCheck1">
+                      Wind Shield
+                        <span style="color:red">*</span>
+                    </li>
                     </ul>
                     <ul style="width: 50%; float:left;">
-                      <li>Sidecar Body</li>
-                      <li>Trash Can</li>
-                      <li>Side Car Light</li>
-                      <li>Muffler Original</li>
-                      <li>Fare Rate Sticker</li>
-                      <li>Plate Sticker</li>
-                      <li>City MCH Sticker</li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Sidecar Body
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Trash Can
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Side Car Light
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Muffler Original
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Fare Rate Sticker
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                      Plate Sticker
+                        <span style="color:red">*</span>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                       <label class="form-check-label" for="defaultCheck1">
+                      City MCH Sticker
+                        <span style="color:red">*</span>
+                    </li>
                     </ul>
                   </div>
+                    <div class="form-check">
+                   </label><br>
+                    <ul style="width: 50%; float:;">
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                        Certification of Registration
+                        <span style="color:red">*</span>
+                    </li>                     
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                        Official Receipt of Registration
+                        <span style="color:red">*</span>
+                    </li>
+                    </li>                     
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                        Certification of Residency
+                        <span style="color:red">*</span>
+                    </li>
+                    <li>
+                        <input class="form-check-input" type="checkbox" value="" id=" " >
+                        <label class="form-check-label" for="defaultCheck1">
+                        Filing Fee Official Receipt
+                        <span style="color:red">*</span>
+                    </li>   
+                    </ul>                
+                  </div>
+                  </div>  
 
-                </div>
+           
               </div> <!--end modal body -->
 
               <div class="modal-footer">
                 <form method="POST" id="application_form">
                   <div class="form-group row" style="float: left">
+                          <div class="form-check">
+                  <ul style="width: 70%; float:;">
+                    <li>
+                        <input class="form-check-input" type="checkbox" value="1" name="opt1" >
+                        <label class="form-check-label" for="defaultCheck1">
+                        Deed of Sale
+                        <span style="color:gray">(opt)</span>
+                        </label>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="1" name="opt2"  >
+                        <label class="form-check-label" for="defaultCheck1">
+                        Petition for Francasing
+                        <span style="color:gray">(opt)</span>
+                        </label>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" name="opt3"  >
+                        <label class="form-check-label" for="defaultCheck1">
+                        Private (opt)
+                      </label>
+                    </li>
+                      <li>
+                        <input class="form-check-input" type="checkbox" value="" name="opt4"  >
+                        <label class="form-check-label" for="defaultCheck1">
+                        Others (Specify)
+                      </label>
+                      <input type="text" name="opt5">
+                    </li>
+                  </ul>
+                </div> 
                     <div class="col-sm-12" style="margin-bottom: 2%;">
-                      <input type="text" class="form-control" name="toda" placeholder="Toda" required>
+                      <select type="text" class="form-control" name="toda" placeholder="Toda" required >
+                        <option>PASADENA</option>
+                        <option>BLUMAN</option>
+                        <option>SM</option>
+                        <option>STO. TOROBIO</option>
+                        <option>DON MAN</option>
+                        <option>ROSE PHAR</option>
+                        <option>BAGORA </option>
+                        <option>AGORA</option>
+                        <option>P.GUEVARRA</option>
+                        <option>J.BASA</option>
+                        <option>F.ROMAN</option>
+                      </select>
                     </div>
                     <div class="col-sm-12" style="margin-bottom: 2%;">
                       <input type="number" class="form-control" name="toda_no" placeholder="Toda No" required>
